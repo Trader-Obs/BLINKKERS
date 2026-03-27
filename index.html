@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLINKKERS — Lashes & Brows Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+  :root {
+    --pink: #D81B60;
+    --pink-light: #f06292;
+    --dark: #060606;
+    --dark-2: #0e0e0e;
+    --cream: #faf6f1;
+    --gold: #c9a96e;
+    --text-muted: #888;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 28px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    mix-blend-mode: normal;
+  }
+
+  nav::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(6,6,6,0.7), transparent);
+    pointer-events: none;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.3em;
+    text-decoration: none;
+    font-weight: 300;
+    position: relative;
+    text-align: center;
+  }
+
+  .nav-logo .blink {
+    color: #fff;
+  }
+
+  .nav-logo .kers {
+    color: var(--pink);
+  }
+
+  .logo-sub {
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.5);
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    position: relative;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--pink-light); }
+
+  .nav-cta {
+    position: relative;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 500;
+  }
+
+  .nav-cta:hover {
+    background: var(--pink);
+    border-color: var(--pink);
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0.55;
+    transform: scale(1.05);
+    animation: slowZoom 14s ease-out forwards;
+  }
+
+  @keyframes slowZoom {
+    to { transform: scale(1); opacity: 0.45; }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 30%,
+      rgba(6,6,6,0.4) 60%,
+      rgba(6,6,6,0.85) 85%,
+      var(--dark) 100%
+    );
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 0 60px 80px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s ease-out forwards;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(60px, 9vw, 130px);
+    line-height: 0.95;
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+
+  .hero-title .line1 {
+    display: block;
+    opacity: 0;
+    animation: fadeUp 1s 0.5s ease-out forwards;
+    color: #fff;
+  }
+
+  .hero-title .line2 {
+    display: block;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeUp 1s 0.75s ease-out forwards;
+  }
+
+  .hero-title .line2 .bea {
+    color: #fff;
+  }
+
+  .hero-title .line2 .uty {
+    color: var(--pink);
+  }
+
+  .hero-sub {
+    margin-top: 28px;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeUp 1s 1s ease-out forwards;
+  }
+
+  .hero-sub span {
+    margin: 0 12px;
+    color: var(--pink);
+  }
+
+  .hero-scroll {
+    position: absolute;
+    right: 60px;
+    bottom: 80px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeIn 1s 1.5s ease-out forwards;
+  }
+
+  .hero-scroll span {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    writing-mode: vertical-rl;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--pink), transparent);
+    animation: scrollPulse 2s 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; transform: scaleY(1); }
+    50% { opacity: 1; transform: scaleY(1.1); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  /* ─── MARQUEE ─── */
+  .marquee-wrap {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    overflow: hidden;
+    padding: 18px 0;
+    background: var(--dark-2);
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    animation: marquee 22s linear infinite;
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 0 28px;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    white-space: nowrap;
+  }
+
+  .marquee-item .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--pink);
+    flex-shrink: 0;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ─── SERVICES ─── */
+  #services {
+    background: var(--cream);
+    padding: 120px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #services::before {
+    content: 'SERVICES';
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 180px;
+    font-weight: 600;
+    color: rgba(0,0,0,0.04);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+
+  .section-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 300;
+    color: #111;
+    line-height: 1.1;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--pink);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .service-card {
+    background: #fff;
+    padding: 56px 40px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--pink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:hover { transform: translateY(-4px); }
+
+  .service-card.featured {
+    background: var(--dark);
+    color: #fff;
+  }
+
+  .service-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 60px;
+    font-weight: 300;
+    color: rgba(0,0,0,0.06);
+    line-height: 1;
+    margin-bottom: 24px;
+  }
+
+  .service-card.featured .service-num { color: rgba(255,255,255,0.06); }
+
+  .service-badge {
+    display: inline-block;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    background: var(--pink);
+    color: #fff;
+    padding: 5px 12px;
+    margin-bottom: 20px;
+  }
+
+  .service-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: #111;
+    letter-spacing: 0.02em;
+    margin-bottom: 12px;
+  }
+
+  .service-card.featured .service-name { color: #fff; }
+
+  .service-desc {
+    font-size: 11px;
+    color: #888;
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+    margin-bottom: 32px;
+  }
+
+  .service-card.featured .service-desc { color: rgba(255,255,255,0.45); }
+
+  .service-price {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+    margin-bottom: 28px;
+  }
+
+  .price-currency {
+    font-size: 14px;
+    color: var(--pink);
+    font-weight: 500;
+  }
+
+  .price-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: #111;
+    line-height: 1;
+  }
+
+  .service-card.featured .price-amount { color: #fff; }
+
+  .price-unit {
+    font-size: 10px;
+    color: #bbb;
+    letter-spacing: 0.1em;
+  }
+
+  .service-features {
+    list-style: none;
+    margin-bottom: 36px;
+  }
+
+  .service-features li {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: #777;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .service-card.featured .service-features li {
+    color: rgba(255,255,255,0.5);
+    border-bottom-color: rgba(255,255,255,0.08);
+  }
+
+  .service-features li::before {
+    content: '';
+    width: 14px;
+    height: 1px;
+    background: var(--pink);
+    flex-shrink: 0;
+  }
+
+  .btn-book {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 14px 32px;
+    border: 1px solid rgba(0,0,0,0.15);
+    color: #333;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .btn-book:hover {
+    background: var(--pink);
+    border-color: var(--pink);
+    color: #fff;
+  }
+
+  .btn-book.light {
+    border-color: rgba(255,255,255,0.2);
+    color: #fff;
+  }
+
+  .btn-book.light:hover {
+    background: var(--pink);
+    border-color: var(--pink);
+  }
+
+  .more-services-btn {
+    display: block;
+    text-align: center;
+    margin-top: 60px;
+    color: var(--pink);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.3s;
+  }
+
+  .more-services-btn:hover {
+    opacity: 0.7;
+  }
+
+  .extra-services {
+    display: none;
+    max-width: 1100px;
+    margin: 40px auto 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .extra-services.show {
+    display: grid;
+  }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: var(--dark);
+    padding: 140px 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .about-img-wrap {
+    position: relative;
+  }
+
+  .about-img-wrap img {
+    width: 100%;
+    height: 600px;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .about-img-accent {
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 180px;
+    height: 180px;
+    border: 1px solid var(--pink);
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .about-img-label {
+    position: absolute;
+    top: 30px;
+    left: -20px;
+    background: var(--pink);
+    color: #fff;
+    padding: 14px 20px;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .about-text .section-eyebrow { text-align: left; }
+  .about-text .section-title { text-align: left; color: #fff; }
+
+  .about-body {
+    font-size: 13px;
+    line-height: 2;
+    color: rgba(255,255,255,0.5);
+    margin-top: 32px;
+  }
+
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 56px;
+    padding-top: 56px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .stat-num span {
+    color: var(--pink);
+    font-size: 28px;
+  }
+
+  .stat-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-top: 8px;
+  }
+
+  /* ─── PROCESS ─── */
+  #process {
+    background: var(--dark-2);
+    padding: 120px 60px;
+    text-align: center;
+  }
+
+  #process .section-title { color: #fff; }
+
+  .process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    max-width: 1100px;
+    margin: 80px auto 0;
+    position: relative;
+  }
+
+  .process-steps::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--pink), var(--pink), transparent);
+    opacity: 0.25;
+  }
+
+  .step {
+    padding: 0 30px;
+    position: relative;
+  }
+
+  .step-num {
+    width: 72px;
+    height: 72px;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 32px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    color: var(--pink);
+    position: relative;
+    background: var(--dark-2);
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+
+  .step-desc {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.8;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── GALLERY ─── */
+  #gallery {
+    background: var(--dark);
+    padding: 120px 0;
+  }
+
+  #gallery .section-header {
+    padding: 0 60px;
+    margin-bottom: 60px;
+  }
+
+  #gallery .section-title { color: #fff; }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 350px 350px;
+    gap: 3px;
+  }
+
+  .gallery-item {
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gallery-item:first-child {
+    grid-row: 1 / 3;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    transition: transform 0.6s ease;
+    display: block;
+  }
+
+  .gallery-item:hover img { transform: scale(1.05); }
+
+  .gallery-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(6,6,6,0.6), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .gallery-item:hover .gallery-item-overlay { opacity: 1; }
+
+  /* ─── TESTIMONIALS ─── */
+  #testimonials {
+    background: var(--cream);
+    padding: 120px 60px;
+    text-align: center;
+  }
+
+  #testimonials .section-title { color: #111; }
+  #testimonials .section-eyebrow { color: var(--pink); }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 1100px;
+    margin: 64px auto 0;
+  }
+
+  .testimonial {
+    background: #fff;
+    padding: 44px 36px;
+    text-align: left;
+    position: relative;
+  }
+
+  .testimonial::before {
+    content: '\201C';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    color: var(--pink);
+    opacity: 0.2;
+    position: absolute;
+    top: 16px;
+    left: 28px;
+    line-height: 1;
+  }
+
+  .testimonial-text {
+    font-size: 13px;
+    line-height: 1.9;
+    color: #555;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .author-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--pink);
+    opacity: 0.2;
+    flex-shrink: 0;
+  }
+
+  .author-name {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #222;
+  }
+
+  .author-detail {
+    font-size: 10px;
+    color: #bbb;
+    letter-spacing: 0.05em;
+    margin-top: 3px;
+  }
+
+  .stars {
+    color: var(--pink);
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+  }
+
+  /* ─── CTA ─── */
+  #cta {
+    background: var(--dark);
+    padding: 160px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(216,27,96,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    position: relative;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 7vw, 100px);
+    font-weight: 300;
+    line-height: 0.95;
+    position: relative;
+  }
+
+  .cta-title em {
+    font-style: italic;
+    color: var(--pink);
+  }
+
+  .cta-sub {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: rgba(255,255,255,0.35);
+    margin-top: 24px;
+    position: relative;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 56px;
+    position: relative;
+  }
+
+  .btn-primary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 18px 48px;
+    background: var(--pink);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover {
+    background: #b71556;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 18px 48px;
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-secondary:hover {
+    color: #fff;
+    border-color: rgba(255,255,255,0.4);
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+    margin-top: 40px;
+  }
+
+  .social-icons a {
+    color: rgba(255,255,255,0.6);
+    font-size: 28px;
+    transition: color 0.3s;
+  }
+
+  .social-icons a:hover {
+    color: var(--pink);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: #020202;
+    padding: 80px 60px 40px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    letter-spacing: 0.25em;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .footer-brand .blink {
+    color: #fff;
+  }
+
+  .footer-brand .kers {
+    color: var(--pink);
+  }
+
+  .footer-brand-sub {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.4);
+    margin-top: 6px;
+  }
+
+  .footer-col-title {
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.3s;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links a:hover { color: var(--pink-light); }
+
+  .footer-bottom {
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-copy {
+    font-size: 10px;
+    color: rgba(255,255,255,0.18);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer-social a {
+    font-size: 18px;
+    color: rgba(255,255,255,0.25);
+    transition: color 0.3s;
+  }
+
+  .footer-social a:hover { color: var(--pink); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    .hero-content { padding: 0 24px 60px; }
+    .hero-scroll { display: none; }
+    #services { padding: 80px 24px; }
+    .services-grid { grid-template-columns: 1fr; gap: 16px; }
+    .extra-services { grid-template-columns: 1fr; gap: 16px; }
+    #about { grid-template-columns: 1fr; padding: 80px 24px; gap: 60px; }
+    .about-img-accent { display: none; }
+    #process { padding: 80px 24px; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); }
+    .process-steps::before { display: none; }
+    #gallery { padding: 80px 0; }
+    #gallery .section-header { padding: 0 24px; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item:first-child { grid-row: auto; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    #testimonials { padding: 80px 24px; }
+    #cta { padding: 100px 24px; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+    footer { padding: 60px 24px 32px; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .about-stats { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="blink">BLINK</span><span class="kers">KERS</span>
+    <div class="logo-sub">LASHES & BROWS</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">Studio</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('pricing-section').scrollIntoView({ behavior: 'smooth' })">Book Now</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">LASH ARTIST STUDIO</p>
+    <h1 class="hero-title">
+      <span class="line1">Unleash Your</span>
+      <span class="line2"><span class="bea">Bea</span><span class="uty">uty</span></span>
+    </h1>
+    <p class="hero-sub">
+      Classic<span>·</span>Volume<span>·</span>Mega Lashes<span>·</span>Brow Sculpting
+    </p>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><span class="dot"></span>Classic Lashes</div>
+    <div class="marquee-item"><span class="dot"></span>Volume Lashes</div>
+    <div class="marquee-item"><span class="dot"></span>Mega Lashes</div>
+    <div class="marquee-item"><span class="dot"></span>Brow Lamination</div>
+    <div class="marquee-item"><span class="dot"></span>Brow Tinting</div>
+    <div class="marquee-item"><span class="dot"></span>Lash Lift</div>
+    <div class="marquee-item"><span class="dot"></span>Fill & Refills</div>
+    <div class="marquee-item"><span class="dot"></span>Premium Products</div>
+    <div class="marquee-item"><span class="dot"></span>Classic Lashes</div>
+    <div class="marquee-item"><span class="dot"></span>Volume Lashes</div>
+    <div class="marquee-item"><span class="dot"></span>Mega Lashes</div>
+    <div class="marquee-item"><span class="dot"></span>Brow Lamination</div>
+    <div class="marquee-item"><span class="dot"></span>Brow Tinting</div>
+    <div class="marquee-item"><span class="dot"></span>Lash Lift</div>
+    <div class="marquee-item"><span class="dot"></span>Fill & Refills</div>
+    <div class="marquee-item"><span class="dot"></span>Premium Products</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">— What We Offer —</p>
+    <h2 class="section-title">Lash <em>Perfection</em>,<br>Three Ways</h2>
+  </div>
+
+  <div id="pricing-section">
+    <div class="services-grid">
+      <!-- Classic -->
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">01</div>
+        <h3 class="service-name">Classic</h3>
+        <p class="service-desc">One extension per natural lash. Clean, natural definition that enhances your eyes while keeping a refined, everyday look.</p>
+        <div class="service-price">
+          <span class="price-currency">₦</span>
+          <span class="price-amount">16,000</span>
+        </div>
+        <ul class="service-features">
+          <li>1:1 lash mapping</li>
+          <li>Natural to dramatic finish</li>
+          <li>2–3 week retention</li>
+          <li>Patch test included</li>
+        </ul>
+        <a href="#cta" class="btn-book">Book This</a>
+      </div>
+
+      <!-- Volume (Featured) -->
+      <div class="service-card featured reveal reveal-delay-2">
+        <div class="service-num">02</div>
+        <div class="service-badge">Most Popular</div>
+        <h3 class="service-name">Volume</h3>
+        <p class="service-desc">Handcrafted fans of 2–6 lashes per natural strand. Fluffy, full, and undeniably glamorous — without the weight.</p>
+        <div class="service-price">
+          <span class="price-currency">₦</span>
+          <span class="price-amount">20,000</span>
+        </div>
+        <ul class="service-features">
+          <li>Lightweight nano-fans</li>
+          <li>Custom curl & length mix</li>
+          <li>3–4 week retention</li>
+          <li>After-care kit included</li>
+        </ul>
+        <a href="#cta" class="btn-book light">Book This</a>
+      </div>
+
+      <!-- Mega -->
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-num">03</div>
+        <h3 class="service-name">Mega Volume</h3>
+        <p class="service-desc">Maximum drama. Ultra-dense fans of 10–20 ultra-fine lashes per natural lash for a bold, unapologetic look.</p>
+        <div class="service-price">
+          <span class="price-currency">₦</span>
+          <span class="price-amount">25,000</span>
+        </div>
+        <ul class="service-features">
+          <li>Ultra-fine 0.03–0.05 diameter</li>
+          <li>Highest density available</li>
+          <li>3–5 week retention</li>
+          <li>Lash serum included</li>
+        </ul>
+        <a href="#cta" class="btn-book">Book This</a>
+      </div>
+    </div>
+
+    <a href="javascript:void(0)" class="more-services-btn" onclick="toggleMoreServices()">+ MORE SERVICES</a>
+
+    <div id="extraServices" class="extra-services">
+      <!-- Hybrid -->
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3 class="service-name">Hybrid</h3>
+        <p class="service-desc">A beautiful blend of classic and volume lashes for natural fullness with added texture.</p>
+        <div class="service-price">
+          <span class="price-currency">₦</span>
+          <span class="price-amount">12,000</span>
+        </div>
+        <ul class="service-features">
+          <li>Mix of fans and singles</li>
+          <li>Textured finish</li>
+          <li>2–3 week retention</li>
+        </ul>
+        <a href="#cta" class="btn-book">Book This</a>
+      </div>
+
+      <!-- Wet Set -->
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <div class="service-badge">NEW!</div>
+        <h3 class="service-name">Wet Set</h3>
+        <p class="service-desc">Glossy, separated wet-look effect that mimics the appearance of freshly applied mascara.</p>
+        <div class="service-price">
+          <span class="price-currency">₦</span>
+          <span class="price-amount">15,000</span>
+        </div>
+        <ul class="service-features">
+          <li>Sleek glossy finish</li>
+          <li>Perfect for editorial looks</li>
+          <li>2–3 week retention</li>
+        </ul>
+        <a href="#cta" class="btn-book">Book This</a>
+      </div>
+
+      <!-- Angel Set -->
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <h3 class="service-name">Angel Set</h3>
+        <p class="service-desc">Soft, wispy lashes that create a delicate, angelic appearance with perfect curl.</p>
+        <div class="service-price">
+          <span class="price-currency">₦</span>
+          <span class="price-amount">13,000</span>
+        </div>
+        <ul class="service-features">
+          <li>Light and airy</li>
+          <li>Wispy texture</li>
+          <li>Natural enhancement</li>
+        </ul>
+        <a href="#cta" class="btn-book">Book This</a>
+      </div>
+
+      <!-- Wispy Effect -->
+      <div class="service-card">
+        <div class="service-num">07</div>
+        <h3 class="service-name">Wispy Effect</h3>
+        <p class="service-desc">Strategic lash placement creating a textured, feathered look with beautiful dimension.</p>
+        <div class="service-price">
+          <span class="price-currency">₦</span>
+          <span class="price-amount">13,000</span>
+        </div>
+        <ul class="service-features">
+          <li>Feathered texture</li>
+          <li>Dimensional finish</li>
+          <li>Custom placement</li>
+        </ul>
+        <a href="#cta" class="btn-book">Book This</a>
+      </div>
+
+      <!-- Colour Lashes -->
+      <div class="service-card">
+        <div class="service-num">08</div>
+        <h3 class="service-name">Colour Lashes</h3>
+        <p class="service-desc">Add a pop of color to your lash set with vibrant shades for a bold statement.</p>
+        <div class="service-price">
+          <span class="price-currency">₦</span>
+          <span class="price-amount">4,000</span>
+        </div>
+        <ul class="service-features">
+          <li>Multiple color options</li>
+          <li>Add-on to any set</li>
+          <li>Custom placement</li>
+        </ul>
+        <a href="#cta" class="btn-book">Book This</a>
+      </div>
+
+      <!-- Refill -->
+      <div class="service-card">
+        <div class="service-num">09</div>
+        <h3 class="service-name">Refill</h3>
+        <p class="service-desc">Maintain your lash extensions with professional fills to keep them looking fresh and full.</p>
+        <div class="service-price">
+          <span class="price-currency">₦</span>
+          <span class="price-amount">55% OFF</span>
+        </div>
+        <ul class="service-features">
+          <li>55% off initial price</li>
+          <li>Within 2-3 weeks</li>
+          <li>Full set maintenance</li>
+        </ul>
+        <a href="#cta" class="btn-book">Book This</a>
+      </div>
+
+      <!-- Custom Strip Lashes -->
+      <div class="service-card">
+        <div class="service-num">10</div>
+        <h3 class="service-name">Custom Strip Lashes</h3>
+        <p class="service-desc">Handcrafted strip lashes designed specifically for your eye shape and preferences.</p>
+        <div class="service-price">
+          <span class="price-currency">₦</span>
+          <span class="price-amount">8,000-15,000</span>
+        </div>
+        <ul class="service-features">
+          <li>Custom design</li>
+          <li>Reusable</li>
+          <li>Perfect fit guaranteed</li>
+        </ul>
+        <a href="#cta" class="btn-book">Book This</a>
+      </div>
+
+      <!-- Removal -->
+      <div class="service-card">
+        <div class="service-num">11</div>
+        <h3 class="service-name">Removal</h3>
+        <p class="service-desc">Safe, professional removal of lash extensions without damaging natural lashes.</p>
+        <div class="service-price">
+          <span class="price-currency">₦</span>
+          <span class="price-amount">4,000</span>
+        </div>
+        <ul class="service-features">
+          <li>Safe professional removal</li>
+          <li>Gentle formula</li>
+          <li>Natural lash care</li>
+        </ul>
+        <a href="#cta" class="btn-book">Book This</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section style="background: var(--dark); padding: 0;">
+  <div id="about">
+    <div class="about-img-wrap reveal">
+      <img src="./WhatsApp Image 2026-03-27 at 17.00.34.jpeg"
+           alt="Lash technician at work">
+      <div class="about-img-label">Est. 2019</div>
+      <div class="about-img-accent"></div>
+    </div>
+
+    <div class="about-text reveal reveal-delay-2">
+      <p class="section-eyebrow">— Our Studio —</p>
+      <h2 class="section-title">Where <em>Craft</em><br>Meets Artistry</h2>
+      <p class="about-body">
+        At BLINKKERS, we believe lashes are more than beauty — they're confidence made visible. Our certified technicians blend precision technique with an artist's eye to deliver results that are uniquely yours.<br><br>
+        Based in Nigeria, we use only premium, ethically sourced materials. Every appointment is private, unhurried, and designed around you.
+      </p>
+
+      <div class="about-stats">
+        <div>
+          <div class="stat-num">5K<span>+</span></div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div>
+          <div class="stat-num">6<span>+</span></div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div>
+          <div class="stat-num">4.9<span>★</span></div>
+          <div class="stat-label">Avg. Rating</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">— How It Works —</p>
+    <h2 class="section-title">Your <em>Journey</em> to Stunning</h2>
+  </div>
+
+  <div class="process-steps">
+    <div class="step reveal reveal-delay-1">
+      <div class="step-num">01</div>
+      <h4 class="step-title">Book Online</h4>
+      <p class="step-desc">Choose your service and preferred time slot. We confirm within 24 hours.</p>
+    </div>
+    <div class="step reveal reveal-delay-2">
+      <div class="step-num">02</div>
+      <h4 class="step-title">Consultation</h4>
+      <p class="step-desc">We discuss your eye shape, desired look, and any sensitivities before we begin.</p>
+    </div>
+    <div class="step reveal reveal-delay-3">
+      <div class="step-num">03</div>
+      <h4 class="step-title">Application</h4>
+      <p class="step-desc">Relax in our studio while our technicians work their magic — safely and precisely.</p>
+    </div>
+    <div class="step reveal reveal-delay-4">
+      <div class="step-num">04</div>
+      <h4 class="step-title">Reveal</h4>
+      <p class="step-desc">Walk out transformed. We send you home with aftercare tips to maximise retention.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">— Our Work —</p>
+    <h2 class="section-title">Every Set, <em>A Masterpiece</em></h2>
+  </div>
+
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <img src="./WhatsApp Image 2026-03-15 at 12.20.42.jpeg" alt="Lash work">
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="./WhatsApp Image 2026-03-15 at 12.20.22.jpeg" alt="Lash close-up">
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="./WhatsApp Image 2026-03-15 at 12.20.38.jpeg" alt="Beauty portrait">
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="./WhatsApp Image 2026-03-15 at 12.20.32.jpeg" alt="Studio setup">
+      <div class="gallery-item-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="./WhatsApp Image 2026-03-15 at 12.20.31.jpeg" alt="Close up lashes">
+      <div class="gallery-item-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-header reveal">
+    <p class="section-eyebrow">— Client Love —</p>
+    <h2 class="section-title">What Our <em>Clients</em> Say</h2>
+  </div>
+
+  <div class="testimonials-grid">
+    <div class="testimonial reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">I've tried 4 lash studios in Lagos and BLINKKERS is on another level. The attention to detail is incredible and they last forever. Won't go anywhere else.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar"></div>
+        <div>
+          <div class="author-name">Adaeze O.</div>
+          <div class="author-detail">Volume Set — 6 visits</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">The consultation made me feel so seen. They designed a set that actually suits my face shape. I get compliments every single day on these lashes.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar"></div>
+        <div>
+          <div class="author-name">Temi A.</div>
+          <div class="author-detail">Mega Set — 3 visits</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial reveal reveal-delay-3">
+      <div class="stars">★★★★★</div>
+      <p class="testimonial-text">Clean studio, professional team, and my lashes still look perfect at week 4. The brow lamination was a bonus — I look woke up like this every morning.</p>
+      <div class="testimonial-author">
+        <div class="author-avatar"></div>
+        <div>
+          <div class="author-name">Chisom B.</div>
+          <div class="author-detail">Classic + Brow Lam</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <p class="cta-eyebrow reveal">— Book Your Appointment —</p>
+  <h2 class="cta-title reveal">
+    Ready to<br><em>Transform?</em>
+  </h2>
+  <p class="cta-sub reveal">Limited slots available weekly. Book yours today.</p>
+  <div class="cta-buttons reveal">
+    <a href="#" class="btn-primary" id="bookNowBtn">Book Now</a>
+    <a href="#" class="btn-secondary" id="contactUsBtn">Contact Us</a>
+  </div>
+  <div class="social-icons" id="socialIcons" style="display: none;">
+    <a href="wa.me/+2348074403324" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <a href=" https://www.instagram.com/blinkkerslashes?igsh=MXEyeDUxcTAwYnd4OA==" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://story.snapchat.com/u/blinkkerslashes?share_id=9lxLP4KKRGqub2PjLtrT3w&locale=en_NG" target="_blank"><i class="fab fa-snapchat"></i></a>
+    <a href="https://www.tiktok.com/@blinkkerslashed?_r=1&_t=ZS-952lzWzegTI" target="_blank"><i class="fab fa-tiktok"></i></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand">
+        <span class="blink">BLINK</span><span class="kers">KERS</span>
+      </div>
+      <div class="footer-brand-sub">LASHES & BROWS</div>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Services</p>
+      <ul class="footer-links">
+        <li><a href="#services">Classic Lashes</a></li>
+        <li><a href="#services">Volume Lashes</a></li>
+        <li><a href="#services">Mega Lashes</a></li>
+        <li><a href="#services">Brow Lamination</a></li>
+        <li><a href="#services">Lash Lift</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Studio</p>
+      <ul class="footer-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#">Aftercare</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="footer-col-title">Contact</p>
+      <ul class="footer-links">
+        <li><a href="#">Benin/Oghara, Nigeria</a></li>
+        <li><a href="#">hello@blinkkers.com</a></li>
+        <li><a href="#">+234 000 000 0000</a></li>
+        <li><a href="#">Mon–Sat, 9am–7pm</a></li>
+      </ul>
+      <div class="footer-social">
+        <a href="https://instagram.com/blinkkerslashes" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://snapchat.com" target="_blank"><i class="fab fa-snapchat"></i></a>
+        <a href="https://wa.me/2340000000000" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://tiktok.com/@blinkkerslashes" target="_blank"><i class="fab fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 BLINKKERS. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  reveals.forEach(el => io.observe(el));
+
+  // Toggle more services
+  function toggleMoreServices() {
+    const extraServices = document.getElementById('extraServices');
+    const btn = document.querySelector('.more-services-btn');
+    extraServices.classList.toggle('show');
+    btn.textContent = extraServices.classList.contains('show') ? '− LESS SERVICES' : '+ MORE SERVICES';
+  }
+
+  // Contact Us button toggles social icons
+  const contactBtn = document.getElementById('contactUsBtn');
+  const socialIcons = document.getElementById('socialIcons');
+  const bookNowBtn = document.getElementById('bookNowBtn');
+
+  contactBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (socialIcons.style.display === 'none' || socialIcons.style.display === '') {
+      socialIcons.style.display = 'flex';
+      contactBtn.textContent = 'Hide Contact';
+    } else {
+      socialIcons.style.display = 'none';
+      contactBtn.textContent = 'Contact Us';
+    }
+  });
+
+  // All "Book This" buttons redirect to contact section
+  document.querySelectorAll('.btn-book').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('cta').scrollIntoView({ behavior: 'smooth' });
+      // Show social icons when redirected from book this
+      if (socialIcons.style.display !== 'flex') {
+        socialIcons.style.display = 'flex';
+        if (contactBtn) contactBtn.textContent = 'Hide Contact';
+      }
+    });
+  });
+
+  // Book Now button in nav redirects to pricing section
+  // Already handled inline
+</script>
+
+</body>
+</html>
